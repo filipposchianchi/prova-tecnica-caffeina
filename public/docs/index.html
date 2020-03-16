@@ -1,0 +1,742 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/all.js"></script>
+
+
+          <script>
+        $(function() {
+            setupLanguages(["bash","javascript"]);
+        });
+      </script>
+      </head>
+
+  <body class="">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+        <img src="images/logo.png" />
+                    <div class="lang-selector">
+                                  <a href="#" data-language-name="bash">bash</a>
+                                  <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+                            <div class="search">
+              <input type="text" class="search" id="input-search" placeholder="Search">
+            </div>
+            <ul class="search-results"></ul>
+              <div id="toc">
+      </div>
+                    <ul class="toc-footer">
+                                  <li><a href='http://github.com/mpociot/documentarian'>Documentation Powered by Documentarian</a></li>
+                            </ul>
+            </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+          <!-- START_INFO -->
+<h1>Info</h1>
+<p>Welcome to the generated API reference.
+<a href="http://localhost/docs/collection.json">Get Postman Collection</a></p>
+<!-- END_INFO -->
+<h1>Authentication management</h1>
+<p>APIs for managing authentication</p>
+<!-- START_d7b7952e7fdddc07c978c9bdaf757acf -->
+<h2>Register new user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/register" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"name":"Filippo","email":"filippo@test.it","password":"quibusdam","password_cofirmation":"ut"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/register"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "Filippo",
+    "email": "filippo@test.it",
+    "password": "quibusdam",
+    "password_cofirmation": "ut"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "user": {
+        "id": 1,
+        "name": "Filippo",
+        "email": "filippo@test.it",
+        "created_at": "2020-03-15T10:30:45.000000Z",
+        "updated_at": "2020-03-15T10:34:16.000000Z"
+    },
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2VlZjVjYzVlOWNlNjMzMzhkMjMwYmEzOTNhNTczMjc3NWRlNjU2NTY5OTc4ZmE3Y2ZiYmEyZTkyNmFiNWQxZTNmYjE4ZDk2ODUxNDliY2MiLCJpYXQiOjE1ODQyODM1NDksIm5iZiI6MTU4NDI4MzU0OSwiZXhwIjoxNjE1ODE5NTQ5LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.yUd0wHA309exgNzDudPd3a0ndjqaBsZ6HsGKwfeurJ1OJmgUjPxmEuK4CzQhkX8Q0dBWqhXDxWf73YMyegCmio18cTvYVGXS3Q3u_fRry3k0ok8uwPeEthPkNuAa9EHdk4yH-QXwNIRBcunT7ivNaoZU5BStOsf53dO-rpw-9azmHiaihM9OvjmiXp4kjobc2aFdrxKFDuB4Q8n0ou9_gsH78jIJwtXnowAHl6hFDaZLGh8r_WzVUsXNozizbh_QZbWPrcSpuWwyUOw6TiH8-xie4Reofgbi-jQDPbvuebBdg-3ArXcw93BYz5dCqpAuASqbGTQUfY2bwkhCJY9l1fqc_HmbpZCaE_6lk-RQiOPOavhxoYmELOLlNSupBbJW2iTBSq1FWvDR6rc6dpJxmlvITre9vWuhdwHQH8wJWDkVuG7IGtvyEohZJObCsd0-e3h-_ueU1mhXsuYuXHoOTEzDrSZhdvwTAkP2KhIYsPCdwBefkjaQuHbC9OjuZvxjrvdPGEnJV3_m4THGHwkEgb4yzI3JH7E8EEktT_r1muZFfqCetRNOanw3X95JIw9ZB2TmiacVI32zMKI3P8o31bjfkPKvoL6J1Kpkh2Rckzpj3VQ0pOitpbTy0YXkJ3szOQCKRsSfyPJr_ZddOYEQoYHdRO2UcZFmzXtJeLcaIv0"
+}</code></pre>
+<blockquote>
+<p>Example response (422):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The given data was invalid.",
+    "errors": {
+        "email": [
+            "The email has already been taken."
+        ]
+    }
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/register</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>required</td>
+<td>The name of the user.</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+<td>The email of the user.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>The password of the user.</td>
+</tr>
+<tr>
+<td><code>password_cofirmation</code></td>
+<td>string</td>
+<td>required</td>
+<td>The password of the user.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_d7b7952e7fdddc07c978c9bdaf757acf -->
+<!-- START_c3fa189a6c95ca36ad6ac4791a873d23 -->
+<h2>Login user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/login" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"email":"filippo@test.it","password":"quam"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/login"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "email": "filippo@test.it",
+    "password": "quam"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "user": {
+        "id": 1,
+        "name": "Filippo",
+        "email": "filippo@test.it",
+        "email_verified_at": "null",
+        "created_at": "2020-03-15T10:30:45.000000Z",
+        "updated_at": "2020-03-15T10:34:16.000000Z"
+    },
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiM2VlZjVjYzVlOWNlNjMzMzhkMjMwYmEzOTNhNTczMjc3NWRlNjU2NTY5OTc4ZmE3Y2ZiYmEyZTkyNmFiNWQxZTNmYjE4ZDk2ODUxNDliY2MiLCJpYXQiOjE1ODQyODM1NDksIm5iZiI6MTU4NDI4MzU0OSwiZXhwIjoxNjE1ODE5NTQ5LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.yUd0wHA309exgNzDudPd3a0ndjqaBsZ6HsGKwfeurJ1OJmgUjPxmEuK4CzQhkX8Q0dBWqhXDxWf73YMyegCmio18cTvYVGXS3Q3u_fRry3k0ok8uwPeEthPkNuAa9EHdk4yH-QXwNIRBcunT7ivNaoZU5BStOsf53dO-rpw-9azmHiaihM9OvjmiXp4kjobc2aFdrxKFDuB4Q8n0ou9_gsH78jIJwtXnowAHl6hFDaZLGh8r_WzVUsXNozizbh_QZbWPrcSpuWwyUOw6TiH8-xie4Reofgbi-jQDPbvuebBdg-3ArXcw93BYz5dCqpAuASqbGTQUfY2bwkhCJY9l1fqc_HmbpZCaE_6lk-RQiOPOavhxoYmELOLlNSupBbJW2iTBSq1FWvDR6rc6dpJxmlvITre9vWuhdwHQH8wJWDkVuG7IGtvyEohZJObCsd0-e3h-_ueU1mhXsuYuXHoOTEzDrSZhdvwTAkP2KhIYsPCdwBefkjaQuHbC9OjuZvxjrvdPGEnJV3_m4THGHwkEgb4yzI3JH7E8EEktT_r1muZFfqCetRNOanw3X95JIw9ZB2TmiacVI32zMKI3P8o31bjfkPKvoL6J1Kpkh2Rckzpj3VQ0pOitpbTy0YXkJ3szOQCKRsSfyPJr_ZddOYEQoYHdRO2UcZFmzXtJeLcaIv0"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/login</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>email</code></td>
+<td>string</td>
+<td>required</td>
+<td>The email of the user.</td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>string</td>
+<td>required</td>
+<td>The password of the user.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_c3fa189a6c95ca36ad6ac4791a873d23 -->
+<!-- START_31f430322462abe3fc3e4ba369b8f77d -->
+<h2>Send the email verification notification.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/email/resend" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/email/resend"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Email Sent"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "messagge": "Unauthenticated"
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/email/resend</code></p>
+<!-- END_31f430322462abe3fc3e4ba369b8f77d -->
+<!-- START_3e4a08674c3c1aaa7a4e8aacbf86420a -->
+<h2>Mark the authenticated user&#039;s email address as verified.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/email/verify/quia/rerum" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/email/verify/quia/rerum"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (403):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Invalid signature."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/email/verify/{id}/{hash}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>id of the user</td>
+</tr>
+<tr>
+<td><code>hash</code></td>
+<td>required</td>
+<td>hash of the user</td>
+</tr>
+</tbody>
+</table>
+<!-- END_3e4a08674c3c1aaa7a4e8aacbf86420a -->
+<h1>Notes management</h1>
+<p>APIs for managing notes</p>
+<!-- START_5184c63b96049910fee7fc65756de436 -->
+<h2>Display a listing of the resource.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/notes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/notes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": [
+        {
+            "id": 4,
+            "title": "a",
+            "description": "Dormouse slowly and don't much surprised, that had a mouse doesn't matter,' it further. So she.",
+            "created_at": "2020-03-14T17:14:45.000000Z",
+            "updated_at": "2020-03-14T17:14:45.000000Z",
+            "user_id": 1
+        },
+        {
+            "id": 5,
+            "title": "dignissimos",
+            "description": "I think that she was a very glad they all its eyes, 'Of course you mean \"purpose\"?' said the hall.",
+            "created_at": "2020-03-14T17:14:45.000000Z",
+            "updated_at": "2020-03-14T17:14:45.000000Z",
+            "user_id": 1
+        },
+        {
+            "id": 6,
+            "title": "impedit",
+            "description": "Said the kitchen. 'When we change to her as he had just at first, and she said the stick, and so.",
+            "created_at": "2020-03-14T17:14:45.000000Z",
+            "updated_at": "2020-03-14T17:14:45.000000Z",
+            "user_id": 1
+        }
+    ]
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/notes</code></p>
+<!-- END_5184c63b96049910fee7fc65756de436 -->
+<!-- START_fc4b6ae244ae158e33e19e0d56b80711 -->
+<h2>Store a newly created note in storage.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
+    "http://localhost/api/notes" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"title":"My first note","description":"This is the description of my first note"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/notes"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "My first note",
+    "description": "This is the description of my first note"
+}
+
+fetch(url, {
+    method: "POST",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "title": "titolo nota",
+        "description": "descrizione nota",
+        "user_id": 2,
+        "updated_at": "2020-03-15T18:23:50.000000Z",
+        "created_at": "2020-03-15T18:23:50.000000Z",
+        "id": 13
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>POST api/notes</code></p>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td>The title of the note.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>required</td>
+<td>The descritption of the note.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_fc4b6ae244ae158e33e19e0d56b80711 -->
+<!-- START_7c30ddc7968295f3665e9e7e4712506d -->
+<h2>Display the specified note.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/notes/asperiores" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/notes/asperiores"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 4,
+        "title": "a",
+        "description": "Dormouse slowly and don't much surprised, that had a mouse doesn't matter,' it further. So she.",
+        "created_at": "2020-03-14T17:14:45.000000Z",
+        "updated_at": "2020-03-14T17:14:45.000000Z",
+        "user_id": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/notes/{note}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>note</code></td>
+<td>required</td>
+<td>id of the note</td>
+</tr>
+</tbody>
+</table>
+<!-- END_7c30ddc7968295f3665e9e7e4712506d -->
+<!-- START_e17ba28433f1ed23cb7a68ebbfcafa11 -->
+<h2>Update the specified resource in storage.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
+    "http://localhost/api/notes/autem" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -d '{"title":"Updated note","description":"Updated description"}'
+</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/notes/autem"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "Updated note",
+    "description": "Updated description"
+}
+
+fetch(url, {
+    method: "PUT",
+    headers: headers,
+    body: body
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "data": {
+        "id": 4,
+        "title": "Updated title",
+        "description": "Updated description",
+        "created_at": "2020-03-14T17:14:45.000000Z",
+        "updated_at": "2020-03-14T17:14:45.000000Z",
+        "user_id": 1
+    }
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>PUT api/notes/{note}</code></p>
+<p><code>PATCH api/notes/{note}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>note</code></td>
+<td>required</td>
+<td>id of the note</td>
+</tr>
+</tbody>
+</table>
+<h4>Body Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>required</td>
+<td>The title of the note.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>required</td>
+<td>The descritption of the note.</td>
+</tr>
+</tbody>
+</table>
+<!-- END_e17ba28433f1ed23cb7a68ebbfcafa11 -->
+<!-- START_9541e0368a1f31ee173647e886e97f45 -->
+<h2>Remove the specified resource from storage.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
+    "http://localhost/api/notes/eum" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/notes/eum"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Note deleted"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>DELETE api/notes/{note}</code></p>
+<h4>URL Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>note</code></td>
+<td>required</td>
+<td>id of the note</td>
+</tr>
+</tbody>
+</table>
+<!-- END_9541e0368a1f31ee173647e886e97f45 -->
+<h1>User management</h1>
+<p>APIs for managing user</p>
+<!-- START_2b6e5a4b188cb183c7e59558cce36cb6 -->
+<h2>Show user info.</h2>
+<p><br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small></p>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
+    -G "http://localhost/api/user" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/user"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers: headers,
+})
+    .then(response =&gt; response.json())
+    .then(json =&gt; console.log(json));</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 3,
+    "name": "Filippo",
+    "email": "test3@test.it",
+    "email_verified_at": null,
+    "created_at": "2020-03-14T19:10:28.000000Z",
+    "updated_at": "2020-03-14T19:10:28.000000Z"
+}</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h3>HTTP Request</h3>
+<p><code>GET api/user</code></p>
+<!-- END_2b6e5a4b188cb183c7e59558cce36cb6 -->
+      </div>
+      <div class="dark-box">
+                        <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                              </div>
+                </div>
+    </div>
+  </body>
+</html>
